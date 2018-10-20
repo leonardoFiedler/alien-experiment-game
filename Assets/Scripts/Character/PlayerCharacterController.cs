@@ -5,11 +5,16 @@ using UnityEngine;
 
 public class PlayerCharacterController : Character {
 	
+	[SerializeField]
+	private Stat health;	
+	
 	protected override void Update () 
 	{
+		health.MyCurrentValue = this.life;
 		GetInput();
 		base.Update();
 	}
+
 
 	private void GetInput() 
 	{
@@ -26,5 +31,18 @@ public class PlayerCharacterController : Character {
 		if (Input.GetKey(KeyCode.A)) {
 			direction += Vector2.left;
 		}
+
+		if (Input.GetKeyDown(KeyCode.Space)) {
+			StartCoroutine(Attack());
+		}
+	}
+
+	private IEnumerator Attack() 
+	{
+		animator.SetLayerWeight(1, 1);
+		animator.SetBool("attack", true);
+		yield return new WaitForSeconds(3);
+		animator.SetBool("attack", false);
+		Debug.Log("Attacking!!!");
 	}
 }

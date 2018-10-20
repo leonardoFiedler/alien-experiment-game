@@ -6,8 +6,16 @@ public abstract class Character : MonoBehaviour {
 
 	[SerializeField]
 	private float speed; //Indica a velocidade do personagem
-	private Animator animator;
+	
+	[SerializeField]
+	protected int life;
+
+	protected Animator animator;
 	protected Vector2 direction; //Indica a direcao do personagem
+	protected bool isMoving; //Indica se o personagem esta se movendo
+	protected bool isAttacking; //Indica se o personagem esta atacando
+
+	
 
 	private void Awake() 
 	{
