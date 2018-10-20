@@ -12,10 +12,9 @@ public abstract class Character : MonoBehaviour {
 
 	protected Animator animator;
 	protected Vector2 direction; //Indica a direcao do personagem
-	protected bool isMoving; //Indica se o personagem esta se movendo
 	protected bool isAttacking; //Indica se o personagem esta atacando
 
-	
+	private Rigidbody2D rigidBody;
 
 	private void Awake() 
 	{
@@ -24,30 +23,52 @@ public abstract class Character : MonoBehaviour {
 
 	void Start () 
 	{
+		rigidBody = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
 	}
 	
 	protected virtual void Update () 
+	{
+		HandleLayers();
+	}
+
+	protected virtual void  FixedUpdate() 
 	{
 		Move();
 	}
 
 	public void Move() 
 	{
-		transform.Translate(direction * speed * Time.deltaTime);
+		//transform.Translate(direction * speed * Time.deltaTime);
+		rigidBody.velocity = direction.normalized * speed;
+	}
 
+	public void HandleLayers()
+	{
 		//Indica se deve efetuar a animacao para movimentar-se ou nao.
-		if (direction.x != 0 || direction.y != 0) {
-			AnimateMovement(direction);
+		if (isMoving) {
+			ActivateLayer("WalkLayer");
+			animator.SetFloat("x", direction.x);
+			animator.SetFloat("y", direction.y);
 		} else {
-			animator.SetLayerWeight(1, 0); //Reseta o layer de andar, logo mantem-se parado
+			ActivateLayer("IdleLayer"); //Reseta o layer de andar, logo mantem-se parado
 		}
 	}
 
-	public void AnimateMovement(Vector2 vector2)
+	public bool isMoving
 	{
-		animator.SetLayerWeight(1, 1);
-		animator.SetFloat("x", vector2.x);
-		animator.SetFloat("y", vector2.y);
+		get {
+			return direction.x != 0 || direction.y != 0;
+		}
+	}
+
+	public void ActivateLayer(string layerName)
+	{
+		for (int i = 0; i < animator.layerCount; i++)
+		{
+			animator.SetLayerWeight(i, 0);
+		}
+
+		animator.SetLayerWeight(animator.GetLayerIndex(layerName), 1);
 	}
 }

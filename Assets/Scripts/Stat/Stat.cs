@@ -34,7 +34,6 @@ public class Stat : MonoBehaviour {
 	}
 	
 	void Update () {
-		Debug.Log(currentValue);
 		UpdateLifeBar();
 		textLifebar.text = currentValue + " / " + maxValue;
 	}
