@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Stat : MonoBehaviour {
 
 	public Image[] content;
+	public Text textLifebar;
 	private int currentValue;
 
 	private static int maxValue = 5;
@@ -35,6 +36,7 @@ public class Stat : MonoBehaviour {
 	void Update () {
 		Debug.Log(currentValue);
 		UpdateLifeBar();
+		textLifebar.text = currentValue + " / " + maxValue;
 	}
 
 	void UpdateLifeBar() {
