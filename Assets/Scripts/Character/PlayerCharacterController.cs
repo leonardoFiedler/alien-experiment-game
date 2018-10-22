@@ -2,19 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class PlayerCharacterController : Character {
-	
-	[SerializeField]
-	private Stat health;	
 	
 	protected override void Update () 
 	{
-		health.MyCurrentValue = this.life;
 		GetInput();
 		base.Update();
 	}
-
 
 	private void GetInput() 
 	{
@@ -33,16 +27,26 @@ public class PlayerCharacterController : Character {
 		}
 
 		if (Input.GetKeyDown(KeyCode.Space)) {
-			StartCoroutine(Attack());
+			attackRoutine = StartCoroutine(Attack());
 		}
 	}
 
 	private IEnumerator Attack() 
 	{
-		animator.SetLayerWeight(1, 1);
-		animator.SetBool("attack", true);
-		yield return new WaitForSeconds(3);
-		animator.SetBool("attack", false);
-		Debug.Log("Attacking!!!");
+		if (!isAttacking && !isMoving)
+		{
+			isAttacking = true;
+			animator.SetBool("attack", isAttacking);
+
+			yield return new WaitForSeconds(1);
+
+			Collider2D[] hitObjects = Physics2D.OverlapCircleAll(meleeAttackPosition.position, meleeRange);
+			if (hitObjects.Length > 1) {
+				hitObjects[1].SendMessage("TakeDamage", meleeDamage, SendMessageOptions.DontRequireReceiver);
+				Debug.Log("Hit " + hitObjects[1].name);
+			}
+
+			StopAttack();
+		}
 	}
 }

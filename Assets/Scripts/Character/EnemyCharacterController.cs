@@ -2,15 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCharacterController : MonoBehaviour {
+public class EnemyCharacterController : Character {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	protected override void Update () {
+		base.Update();
 	}
 }

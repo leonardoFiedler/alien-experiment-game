@@ -10,14 +10,28 @@ public abstract class Character : MonoBehaviour {
 	[SerializeField]
 	protected int life;
 
+	[SerializeField]
+	protected int meleeDamage;
+
+	[SerializeField]
+	protected Transform meleeAttackPosition; //Transform com a posicao de ataque
+
+	[SerializeField]
+	protected float meleeRange;
+
+	[SerializeField]
+	protected Stat health;
+
 	protected Animator animator;
 	protected Vector2 direction; //Indica a direcao do personagem
 	protected bool isAttacking; //Indica se o personagem esta atacando
 
+	protected Coroutine attackRoutine;
 	private Rigidbody2D rigidBody;
 
 	private void Awake() 
 	{
+		isAttacking = false;
 		direction = Vector2.zero;
 	}
 
@@ -29,6 +43,7 @@ public abstract class Character : MonoBehaviour {
 	
 	protected virtual void Update () 
 	{
+		health.MyCurrentValue = this.life;
 		HandleLayers();
 	}
 
@@ -50,6 +65,10 @@ public abstract class Character : MonoBehaviour {
 			ActivateLayer("WalkLayer");
 			animator.SetFloat("x", direction.x);
 			animator.SetFloat("y", direction.y);
+
+			StopAttack();
+		} else if (isAttacking) {
+			ActivateLayer("AttackLayer");
 		} else {
 			ActivateLayer("IdleLayer"); //Reseta o layer de andar, logo mantem-se parado
 		}
@@ -70,5 +89,22 @@ public abstract class Character : MonoBehaviour {
 		}
 
 		animator.SetLayerWeight(animator.GetLayerIndex(layerName), 1);
+	}
+
+	public void StopAttack()
+	{
+		if (attackRoutine != null) {
+			StopCoroutine(attackRoutine);
+			isAttacking = false;
+			animator.SetBool("attack", isAttacking);
+		}
+	}
+
+	public virtual void TakeDamage(int value) 
+	{
+		life -= value;
+		if (life <= 0) {
+			Destroy(gameObject);
+		}
 	}
 }

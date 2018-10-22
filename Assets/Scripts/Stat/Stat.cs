@@ -8,8 +8,7 @@ public class Stat : MonoBehaviour {
 	public Image[] content;
 	public Text textLifebar;
 	private int currentValue;
-
-	private static int maxValue = 5;
+	public int maxValue;
 
 	public int MyCurrentValue
 	{
