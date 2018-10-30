@@ -9,7 +9,7 @@ public class Fase01Controller : MonoBehaviour {
 	public Transform[] marcacaoPositions;
 	private int[] marcacoes; //Marcacoes corretas
 	private int[] marcacoesPlayer; //Marcacoes preenchidas pelo player
-	private GameObject[] marcacoesGO;
+	private GameObject[] marcacoesGO; //Lista de marcacoes para poder destruir e manter os itens
 
 	void Start () {
 		marcacoes = new int[6] {1,2,3,1,2,3};
@@ -35,7 +35,7 @@ public class Fase01Controller : MonoBehaviour {
 			switch (marcacoesPlayer[i])
 			{
 				case 0: //Vazio - Madeira
-				marcacoesGO[i] = Instantiate(Resources.Load("Fase01/Marcacao", typeof(GameObject)), 
+				Instantiate(Resources.Load("Fase01/Marcacao", typeof(GameObject)), 
 							new Vector3(marcacaoPositions[i].position.x, marcacaoPositions[i].position.y, 0), 
 							Quaternion.identity);
 				break;
