@@ -30,20 +30,23 @@ public class EnemyCharacterController : Character {
 		}
 	}
 
-	protected void Awake()
+	protected override void Awake()
 	{
         attackRange = 1;
         ChangeState(new IdleEnemyBehavior());
+        base.Awake();
 	}
 
 	protected override void Update () {
-
-        if (!IsAttacking)
+        if (IsAlive)
         {
-            AttackTime += Time.deltaTime; 
-        }
+            if (!IsAttacking)
+            {
+                AttackTime += Time.deltaTime; 
+            }
 
-		currentState.Update();
+		    currentState.Update();
+        }
 		base.Update();
 	}
 

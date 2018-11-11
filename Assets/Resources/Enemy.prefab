@@ -408,7 +408,7 @@ MonoBehaviour:
   life: 3
   meleeDamage: 1
   meleeAttackPosition: {fileID: 4344936979173196}
-  meleeRange: 0.3
+  meleeRange: 0.5
   health: {fileID: 114247261154628550}
 --- !u!114 &114247261154628550
 MonoBehaviour:
@@ -421,6 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 702662028e2e9458e972a1c23c574811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 223783112093950266}
   content:
   - {fileID: 114040492525557224}
   - {fileID: 114694780048599636}

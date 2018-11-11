@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Stat : MonoBehaviour {
 
+    public Canvas canvas;
 	public Image[] content;
 	public Text textLifebar;
 	private int currentValue;
@@ -26,8 +27,7 @@ public class Stat : MonoBehaviour {
 			}
 		} 
 	}
-
-
+    
 	void Start () {
 		
 	}
@@ -48,4 +48,9 @@ public class Stat : MonoBehaviour {
 			content[i].enabled = true;
 		}
 	}
+
+    public void DisableCanvas()
+    {
+        canvas.enabled = false;
+    }
 }

@@ -44,10 +44,22 @@ public class AttackEnemyState : IState
     public IEnumerator Attack()
     {
         parent.IsAttacking = true;
-
         parent.Animator.SetTrigger("attack");
         
         yield return new WaitForSeconds(parent.Animator.GetCurrentAnimatorStateInfo(2).length);
+
+        Collider2D[] hitObjects = Physics2D.OverlapCircleAll(parent.MeleeAttackPosition.position, parent.MeleeRange);
+        if (hitObjects.Length > 0)
+        {
+            foreach (Collider2D collider2D in hitObjects)
+            {
+                if (collider2D.tag == "Player")
+                {
+                    collider2D.SendMessage("TakeDamage", parent.MeleeDamage, SendMessageOptions.DontRequireReceiver);
+                    Debug.Log("Enemy Hit " + collider2D.name);
+                }
+            }
+        }
 
         parent.IsAttacking = false;
     }

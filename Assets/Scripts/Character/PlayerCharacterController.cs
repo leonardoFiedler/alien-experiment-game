@@ -40,11 +40,17 @@ public class PlayerCharacterController : Character {
 
 			yield return new WaitForSeconds(1);
 
-			Collider2D[] hitObjects = Physics2D.OverlapCircleAll(meleeAttackPosition.position, meleeRange);
-			if (hitObjects.Length > 1 && hitObjects[1].tag != "Player") {
-				hitObjects[1].SendMessage("TakeDamage", meleeDamage, SendMessageOptions.DontRequireReceiver);
-				Debug.Log("Hit " + hitObjects[1].name);
-			}
+			Collider2D[] hitObjects = Physics2D.OverlapCircleAll(meleeAttackPosition.position, MeleeRange);
+            if (hitObjects.Length > 0)
+            {
+                foreach(Collider2D collider2D in hitObjects) {
+                    if (collider2D.tag == "Enemy")
+                    {
+                        collider2D.SendMessage("TakeDamage", MeleeDamage, SendMessageOptions.DontRequireReceiver);
+                        Debug.Log("Hit " + collider2D.name);
+                    }
+                }
+            }
 
 			StopAttack();
 		}

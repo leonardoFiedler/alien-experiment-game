@@ -10,22 +10,21 @@ public abstract class Character : MonoBehaviour {
 	[SerializeField]
 	protected int life;
 
-	[SerializeField]
-	protected int meleeDamage;
+    [SerializeField]
+    protected int meleeDamage;
 
     [SerializeField]
     protected Transform meleeAttackPosition; //Transform com a posicao de ataque
 
     [SerializeField]
-	protected float meleeRange;
+    protected float meleeRange;
 
-	[SerializeField]
+    [SerializeField]
 	protected Stat health;
 
     private Animator animator;
-    private Vector2 direction; //Indica a direcao do personagem
+    private Vector2 direction;  //Indica a direcao do personagem
     protected bool isAttacking; //Indica se o personagem esta atacando
-
     protected Coroutine attackRoutine;
 	private Rigidbody2D rigidBody;
 
@@ -77,10 +76,19 @@ public abstract class Character : MonoBehaviour {
         }
     }
 
-    private void Awake() 
+    public bool IsAlive
+    {
+        get
+        {
+            return health.MyCurrentValue > 0;
+        }
+    }
+
+    protected virtual void Awake() 
 	{
 		isAttacking = false;
 		direction = Vector2.zero;
+        health.MyCurrentValue = life;
 	}
 
 	void Start () 
@@ -91,35 +99,39 @@ public abstract class Character : MonoBehaviour {
 	
 	protected virtual void Update () 
 	{
-		health.MyCurrentValue = this.life;
 		HandleLayers();
 	}
 
-	protected virtual void  FixedUpdate() 
+	protected virtual void FixedUpdate() 
 	{
-		Move();
+        if (IsAlive)
+		    Move();
 	}
 
 	public void Move() 
 	{
-		//transform.Translate(direction * speed * Time.deltaTime);
 		rigidBody.velocity = direction.normalized * speed;
 	}
 
 	public void HandleLayers()
 	{
-		//Indica se deve efetuar a animacao para movimentar-se ou nao.
-		if (isMoving) {
-			ActivateLayer("WalkLayer");
-			Animator.SetFloat("x", direction.x);
-			Animator.SetFloat("y", direction.y);
+        if (IsAlive)
+        {
+		    //Indica se deve efetuar a animacao para movimentar-se ou nao.
+		    if (isMoving) {
+			    ActivateLayer("WalkLayer");
+			    Animator.SetFloat("x", direction.x);
+			    Animator.SetFloat("y", direction.y);
 
-			StopAttack();
-		} else if (isAttacking) {
-			ActivateLayer("AttackLayer");
-		} else {
-			ActivateLayer("IdleLayer"); //Reseta o layer de andar, logo mantem-se parado
-		}
+			    StopAttack();
+		    } else if (isAttacking) {
+			    ActivateLayer("AttackLayer");
+		    } else {
+			    ActivateLayer("IdleLayer"); //Reseta o layer de andar, logo mantem-se parado
+		    }
+        } else {
+            ActivateLayer("DeathLayer"); //Seta o layer para o estado death
+        }
 	}
 
 	public bool isMoving
@@ -139,6 +151,32 @@ public abstract class Character : MonoBehaviour {
         set
         {
             meleeAttackPosition = value;
+        }
+    }
+
+    public int MeleeDamage
+    {
+        get
+        {
+            return meleeDamage;
+        }
+
+        set
+        {
+            meleeDamage = value;
+        }
+    }
+
+    public float MeleeRange
+    {
+        get
+        {
+            return meleeRange;
+        }
+
+        set
+        {
+            meleeRange = value;
         }
     }
 
@@ -163,9 +201,10 @@ public abstract class Character : MonoBehaviour {
 
 	public virtual void TakeDamage(int value) 
 	{
-		life -= value;
-		if (life <= 0) {
-			Destroy(gameObject);
-		}
+        health.MyCurrentValue -= value;
+		if (health.MyCurrentValue <= 0) {
+            Animator.SetTrigger("die");
+            health.DisableCanvas(); //Hide lifebar
+        }
 	}
 }
