@@ -23,11 +23,33 @@ public abstract class Character : MonoBehaviour {
 	protected Stat health;
 
 	protected Animator animator;
-	protected Vector2 direction; //Indica a direcao do personagem
+	private Vector2 direction; //Indica a direcao do personagem
 	protected bool isAttacking; //Indica se o personagem esta atacando
 
 	protected Coroutine attackRoutine;
 	private Rigidbody2D rigidBody;
+
+	public Vector2 Direction
+	{
+		get {
+			return direction;
+		}
+
+		set {
+			direction = value;
+		}
+	}
+
+	public float Speed
+	{
+		get {
+			return speed;
+		}
+
+		set {
+			speed = value;
+		}
+	}
 
 	private void Awake() 
 	{

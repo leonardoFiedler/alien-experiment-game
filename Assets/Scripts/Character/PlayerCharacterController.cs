@@ -12,18 +12,18 @@ public class PlayerCharacterController : Character {
 
 	private void GetInput() 
 	{
-		direction = Vector2.zero;
+		Direction = Vector2.zero;
 		if (Input.GetKey(KeyCode.W)) {
-			direction += Vector2.up;
+			Direction += Vector2.up;
 		}
 		if (Input.GetKey(KeyCode.S)) {
-			direction += Vector2.down;
+			Direction += Vector2.down;
 		} 
 		if (Input.GetKey(KeyCode.D)) {
-			direction += Vector2.right;
+			Direction += Vector2.right;
 		} 
 		if (Input.GetKey(KeyCode.A)) {
-			direction += Vector2.left;
+			Direction += Vector2.left;
 		}
 
 		if (Input.GetKeyDown(KeyCode.Space)) {
