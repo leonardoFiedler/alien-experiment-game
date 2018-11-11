@@ -7,6 +7,17 @@ public class EnemyCharacterController : Character {
 	private Transform target;
 
 	private IState currentState;
+    private float attackRange;
+
+    public float AttackTime { get; set; }
+
+    public float AttackRange
+    {
+        get
+        {
+            return attackRange;
+        }
+    }
 
 	public Transform Target
 	{
@@ -21,10 +32,17 @@ public class EnemyCharacterController : Character {
 
 	protected void Awake()
 	{
-		ChangeState(new IdleEnemyBehavior());
+        attackRange = 1;
+        ChangeState(new IdleEnemyBehavior());
 	}
 
 	protected override void Update () {
+
+        if (!IsAttacking)
+        {
+            AttackTime += Time.deltaTime; 
+        }
+
 		currentState.Update();
 		base.Update();
 	}

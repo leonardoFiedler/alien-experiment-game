@@ -13,20 +13,20 @@ public abstract class Character : MonoBehaviour {
 	[SerializeField]
 	protected int meleeDamage;
 
-	[SerializeField]
-	protected Transform meleeAttackPosition; //Transform com a posicao de ataque
+    [SerializeField]
+    protected Transform meleeAttackPosition; //Transform com a posicao de ataque
 
-	[SerializeField]
+    [SerializeField]
 	protected float meleeRange;
 
 	[SerializeField]
 	protected Stat health;
 
-	protected Animator animator;
-	private Vector2 direction; //Indica a direcao do personagem
-	protected bool isAttacking; //Indica se o personagem esta atacando
+    private Animator animator;
+    private Vector2 direction; //Indica a direcao do personagem
+    protected bool isAttacking; //Indica se o personagem esta atacando
 
-	protected Coroutine attackRoutine;
+    protected Coroutine attackRoutine;
 	private Rigidbody2D rigidBody;
 
 	public Vector2 Direction
@@ -51,7 +51,33 @@ public abstract class Character : MonoBehaviour {
 		}
 	}
 
-	private void Awake() 
+    public bool IsAttacking
+    {
+        get
+        {
+            return isAttacking;
+        }
+
+        set
+        {
+            isAttacking = value;
+        }
+    }
+
+    public Animator Animator
+    {
+        get
+        {
+            return animator;
+        }
+
+        set
+        {
+            animator = value;
+        }
+    }
+
+    private void Awake() 
 	{
 		isAttacking = false;
 		direction = Vector2.zero;
@@ -60,7 +86,7 @@ public abstract class Character : MonoBehaviour {
 	void Start () 
 	{
 		rigidBody = GetComponent<Rigidbody2D>();
-		animator = GetComponent<Animator>();
+		Animator = GetComponent<Animator>();
 	}
 	
 	protected virtual void Update () 
@@ -85,8 +111,8 @@ public abstract class Character : MonoBehaviour {
 		//Indica se deve efetuar a animacao para movimentar-se ou nao.
 		if (isMoving) {
 			ActivateLayer("WalkLayer");
-			animator.SetFloat("x", direction.x);
-			animator.SetFloat("y", direction.y);
+			Animator.SetFloat("x", direction.x);
+			Animator.SetFloat("y", direction.y);
 
 			StopAttack();
 		} else if (isAttacking) {
@@ -103,14 +129,27 @@ public abstract class Character : MonoBehaviour {
 		}
 	}
 
-	public void ActivateLayer(string layerName)
+    public Transform MeleeAttackPosition
+    {
+        get
+        {
+            return meleeAttackPosition;
+        }
+
+        set
+        {
+            meleeAttackPosition = value;
+        }
+    }
+
+    public void ActivateLayer(string layerName)
 	{
-		for (int i = 0; i < animator.layerCount; i++)
+		for (int i = 0; i < Animator.layerCount; i++)
 		{
-			animator.SetLayerWeight(i, 0);
+			Animator.SetLayerWeight(i, 0);
 		}
 
-		animator.SetLayerWeight(animator.GetLayerIndex(layerName), 1);
+		Animator.SetLayerWeight(Animator.GetLayerIndex(layerName), 1);
 	}
 
 	public void StopAttack()
@@ -118,7 +157,7 @@ public abstract class Character : MonoBehaviour {
 		if (attackRoutine != null) {
 			StopCoroutine(attackRoutine);
 			isAttacking = false;
-			animator.SetBool("attack", isAttacking);
+			Animator.SetBool("attack", isAttacking);
 		}
 	}
 

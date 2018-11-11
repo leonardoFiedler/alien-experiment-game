@@ -24,6 +24,13 @@ public class FollowEnemyBehavior : IState
 															parent.Target.transform.position, 
 															parent.Speed * Time.deltaTime);
 
+            float distance = Vector2.Distance(parent.Target.position, parent.transform.position);
+
+            if (distance <= parent.AttackRange)
+            {
+                parent.ChangeState(new AttackEnemyState());
+            }
+
 		} else {
 			parent.ChangeState(new IdleEnemyBehavior());
 		}

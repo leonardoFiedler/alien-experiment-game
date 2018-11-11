@@ -36,7 +36,7 @@ public class PlayerCharacterController : Character {
 		if (!isAttacking && !isMoving)
 		{
 			isAttacking = true;
-			animator.SetBool("attack", isAttacking);
+			Animator.SetBool("attack", isAttacking);
 
 			yield return new WaitForSeconds(1);
 
