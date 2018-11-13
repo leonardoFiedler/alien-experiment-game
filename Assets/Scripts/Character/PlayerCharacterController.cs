@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCharacterController : Character {
-	
+
 	protected override void Update () 
 	{
 		GetInput();
@@ -25,7 +25,6 @@ public class PlayerCharacterController : Character {
 		if (Input.GetKey(KeyCode.A)) {
 			Direction += Vector2.left;
 		}
-
 		if (Input.GetKeyDown(KeyCode.Space)) {
 			attackRoutine = StartCoroutine(Attack());
 		}

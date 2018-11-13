@@ -10,6 +10,8 @@ TagManager:
   - Porta03
   - Porta04
   - Porta05
+  - Collect
+  - Drop
   layers:
   - Default
   - TransparentFX
@@ -22,7 +24,7 @@ TagManager:
   - Enemy
   - Player
   - Obstacle
-  - 
+  - Collectable
   - 
   - 
   - 
