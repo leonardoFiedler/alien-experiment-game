@@ -12,6 +12,7 @@ TagManager:
   - Porta05
   - Collect
   - Drop
+  - nextStage
   layers:
   - Default
   - TransparentFX

@@ -113,6 +113,34 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &296734173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 296734174}
+  m_Layer: 0
+  m_Name: PapersPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &296734174
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 296734173}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.28, y: 4.27, z: -0.05859375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &312208150
 GameObject:
   m_ObjectHideFlags: 0
@@ -2839,7 +2867,7 @@ Tilemap:
   - first: {x: -9, y: -5, z: 0}
     second:
       m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileSpriteIndex: 7
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -3583,15 +3611,6 @@ Tilemap:
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
       m_ColliderType: 1
-  - first: {x: 8, y: 4, z: 0}
-    second:
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_ObjectToInstantiate: {fileID: 0}
-      m_TileFlags: 1
-      m_ColliderType: 1
   - first: {x: 9, y: 4, z: 0}
     second:
       m_TileIndex: 5
@@ -3783,7 +3802,7 @@ Tilemap:
       m_ColliderType: 1
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 2
+  - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: e27b27426c4c547429f10f1f0dc7d3cb, type: 2}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 1ea53c65c5ff34dd3ae284cba75439a1, type: 2}
@@ -3802,8 +3821,8 @@ Tilemap:
   - m_RefCount: 4
     m_Data: {fileID: 11400000, guid: 9b1bf124e465642e29e02b0183a52716, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 2
-    m_Data: {fileID: 21300168, guid: 8946549461f5a4fc696c9f93a771e958, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 2
     m_Data: {fileID: 21300198, guid: 8946549461f5a4fc696c9f93a771e958, type: 3}
   - m_RefCount: 61
@@ -3816,12 +3835,12 @@ Tilemap:
     m_Data: {fileID: 21300232, guid: 8946549461f5a4fc696c9f93a771e958, type: 3}
   - m_RefCount: 4
     m_Data: {fileID: 21300200, guid: 8946549461f5a4fc696c9f93a771e958, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300168, guid: 8946549461f5a4fc696c9f93a771e958, type: 3}
   - m_RefCount: 4
     m_Data: {fileID: 21300230, guid: 8946549461f5a4fc696c9f93a771e958, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 126
+  - m_RefCount: 125
     m_Data:
       e00: 1
       e01: 0
@@ -3840,7 +3859,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 126
+  - m_RefCount: 125
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4454,7 +4473,6 @@ GameObject:
   - component: {fileID: 2134482152}
   - component: {fileID: 2134482154}
   - component: {fileID: 2134482155}
-  - component: {fileID: 2134482156}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -4510,26 +4528,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1755576066f10e24e90307bc29a8fbbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  nextSceneName: Fase03
+  playerSpawn: {fileID: 950608878}
   playerSpawn: {fileID: 950608878}
   enemySpawn01: {fileID: 1444153525}
   enemySpawn02: {fileID: 312208151}
   enemySpawn03: {fileID: 956375120}
   enemySpawn04: {fileID: 357084825}
   enemySpawn05: {fileID: 803037900}
---- !u!114 &2134482156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2134482151}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1755576066f10e24e90307bc29a8fbbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerSpawn: {fileID: 0}
-  enemySpawn01: {fileID: 0}
-  enemySpawn02: {fileID: 0}
-  enemySpawn03: {fileID: 0}
-  enemySpawn04: {fileID: 0}
-  enemySpawn05: {fileID: 0}
+  papersPosition: {fileID: 296734174}

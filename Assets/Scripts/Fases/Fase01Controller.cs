@@ -1,41 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class Fase01Controller : MonoBehaviour {
-
-	public Transform playerSpawn;
-
-	private GameObject player;
-
+public class Fase01Controller : BaseFaseController
+{
 	private int idCollectable; //Id do objeto coletado;
 	public Transform[] marcacaoPositions;
 	private int[] marcacoes; //Marcacoes corretas
 	private int[] marcacoesPlayer; //Marcacoes preenchidas pelo player
-	
 	private GameObject[] marcacoesGO; //Lista de marcacoes para poder destruir e manter os itens
-
+    
 	void Start () {
+        nextSceneName = "Fase02";
 		marcacoes = new int[6] {1,2,3,1,2,3};
 		marcacoesGO = new GameObject[6];
 		marcacoesPlayer = marcacoes;
 
 		//Instancia o player que vai aparecer
-		player = Instantiate(Resources.Load("Player", typeof(GameObject)), 
-							new Vector3(playerSpawn.position.x, 				
-							 	playerSpawn.position.y, 0), 
+		player = Instantiate(Resources.Load("Player", typeof(GameObject)), new Vector3(playerSpawn.position.x, playerSpawn.position.y, 0), 
 							Quaternion.identity) as GameObject;
-		SetMarkerPositions();
+        //Apos carregar o player mantem ele vivo entre as fases
+        DontDestroyOnLoad(player);
 
+        SetMarkerPositions();
 		//Limpa a visualizacao
 		StartCoroutine(ExecuteAfterTime());
 	}
 	
-	void Update () {
-		GetInput();
+	public override void Update () {
+        base.Update();
 	}
 
-	void GetInput()
+	public override void GetInput()
 	{
 		if (Input.GetKey(KeyCode.E))
 		{
@@ -55,18 +52,44 @@ public class Fase01Controller : MonoBehaviour {
 						int pos = collider2D.GetComponent<DroppableBehavior>().Index;
 						marcacoesPlayer[pos] = idCollectable;
 						collider2D.SendMessage("SetResource", idCollectable, SendMessageOptions.DontRequireReceiver);
-						
-						Debug.Log("Marcacoes");
-						foreach (var item in marcacoes)
-						{
-							Debug.Log("item :" + item);	
-						}
 
-						Debug.Log("Marcacoes Player");
+                        bool isEnd = true;
 						foreach (var item in marcacoesPlayer)
 						{
-							Debug.Log("item :" + item);	
+                            if (item == 0)
+                            {
+                                isEnd = false;
+                                break;
+                            }
 						}
+
+                        if (isEnd)
+                        {
+                            //Se nao ha mais o que preencher, verifica se esta correto
+                            bool isRight = true;
+                            for (int i = 0; i < marcacoes.Length; i++)
+                            {
+                               if (marcacoes[i] != marcacoesPlayer[i])
+                               {
+                                    isRight = false;
+                                    break;
+                               }
+                            }
+
+                            if (isRight) {
+                                //Instancia o papel e vai para a proxima fase
+                                Instantiate(Resources.Load("Papers"), papersPosition.position, Quaternion.identity);
+                            } else {
+                                //Limpa os blocos e pede para preencher novamente
+                                marcacoesPlayer = new int[] { 0, 0, 0, 0, 0, 0 };
+                                foreach(var marcacao in marcacoesGO) {
+                                    Destroy(marcacao);
+                                }
+
+                                marcacoesGO = new GameObject[6];
+                                SetMarkerPositions();
+                            }
+                        }
 
 						idCollectable = 0;
 						break;
@@ -74,6 +97,7 @@ public class Fase01Controller : MonoBehaviour {
                 }
             }
 		}
+        base.GetInput();
 	}
 
 	void SetMarkerPositions()
