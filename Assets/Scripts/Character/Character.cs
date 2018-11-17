@@ -20,7 +20,7 @@ public abstract class Character : MonoBehaviour {
     protected float meleeRange;
 
     [SerializeField]
-	protected Stat health;
+    protected Stat health;
 
     private Animator animator;
     private Vector2 direction;  //Indica a direcao do personagem
@@ -177,6 +177,19 @@ public abstract class Character : MonoBehaviour {
         set
         {
             meleeRange = value;
+        }
+    }
+
+    public Stat Health
+    {
+        get
+        {
+            return health;
+        }
+
+        set
+        {
+            health = value;
         }
     }
 

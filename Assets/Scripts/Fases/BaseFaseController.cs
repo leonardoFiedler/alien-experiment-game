@@ -21,6 +21,7 @@ public class BaseFaseController : MonoBehaviour
     public virtual void Update()
     {
         GetInput();
+        CheckPlayerDeath();
     }
 
     public virtual void GetInput()
@@ -40,5 +41,22 @@ public class BaseFaseController : MonoBehaviour
                 }
             }
         }
+    }
+
+    //Check de death do player - este controle e feito em cada fase
+    public void CheckPlayerDeath()
+    {
+        if (player.GetComponent<PlayerCharacterController>().Health.MyCurrentValue <= 0)
+        {
+            StartCoroutine(DeathKillCam());
+        }
+    }
+
+    //Controla a death kill cam do Player - espera 2 segundos e direciona para a tela de derrota
+    private IEnumerator DeathKillCam()
+    {
+        yield return new WaitForSeconds(2);
+        Destroy(player);
+        SceneManager.LoadScene("Derrota");
     }
 }
