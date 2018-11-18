@@ -8,52 +8,76 @@ public class Fase03Controller : BaseFaseController
 {
     public Transform enemySpawn;
     public Transform mesa;
+    public GameObject enemy;
     private int idCollectable;
     
-    private string[] ordemPortas = new string[] { "Porta02", "Porta05", "Porta04", "Porta01", "Porta03" };
-    private List<string> listaPortas = new List<string>();
+    private int[] ordemPortas = new int[] { 2, 5, 4, 1, 3 };
+    private List<int> listaPortas = new List<int>();
 
     // Use this for initialization
     void Start () {
 
         //Instancia o player que vai aparecer
-        //Instantiate(Resources.Load("Player", typeof(GameObject)), new Vector3(playerSpawn.position.x, playerSpawn.position.y, 0), Quaternion.identity);
-
         player = Instantiate(Resources.Load("Player", typeof(GameObject)), new Vector3(playerSpawn.position.x, playerSpawn.position.y, 0), 
 							Quaternion.identity) as GameObject;
         
-        //Instancia o enemy que vai aparecer
-        //Instantiate(Resources.Load("Enemy", typeof(GameObject)), new Vector3(enemySpawn.position.x, enemySpawn.position.y, 0), Quaternion.identity);
-
         //Limpa a visualizacao
         StartCoroutine(ExecuteAfterTime());
     }
 	
 	// Update is called once per frame
-	public override void Update () {
+	public override void Update () 
+    {
         base.Update();
 	}
 
 	public override void GetInput()
 	{
-		if (Input.GetKey(KeyCode.E))
+        int count = 0;
+		if (Input.GetKeyDown(KeyCode.E))
 		{
-			Collider2D[] collectObject = Physics2D.OverlapCircleAll(player.transform.position, 3.0f);
+			Collider2D[] collectObject = Physics2D.OverlapCircleAll(player.transform.position, 0.3f);
             if (collectObject.Length > 0)
             {
                 foreach(Collider2D collider2D in collectObject) 
                 {
-                    //if(collider2D.GetComponent<CollectableBehavior>() == null)
-                    //    Debug.Log("Aqui");
-                    //break;
                     Debug.Log("Tag: " + collider2D.tag);
-                    idCollectable = collider2D.GetComponent<CollectableBehavior>().Id;
-                    Debug.Log("Tag: " + collider2D.tag + " - ID: " + idCollectable);
-                    
-                    if (listaPortas.Count == 0 && collider2D.tag == "Porta02")
-                        Debug.Log("Entrou porta 02");
-                    
-                    break;
+                    if (collider2D.tag == "Porta")
+                    {
+                        idCollectable = collider2D.GetComponent<CollectableBehavior>().Id;
+                        Debug.Log("Tag: " + collider2D.tag + " - ID: " + idCollectable);
+                        
+                        if (idCollectable > 0)
+                        {
+                            count = listaPortas.Count;
+                            Debug.Log("2 - ID: " + idCollectable + " - Count: " + count);
+                            if (count == 0 && idCollectable == 2)
+                            {
+                                listaPortas.Add(idCollectable);
+                                Debug.Log("Entrou porta 02");
+                            }
+                            else if (ordemPortas[count] == idCollectable)
+                            {
+                                 listaPortas.Add(idCollectable);
+                                Debug.Log("Entrou porta " + idCollectable);
+                            }
+                            else if (ordemPortas.Length == listaPortas.Count)
+                            {
+                                //Instancia o papel e vai para a proxima fase
+                                Instantiate(Resources.Load("Papers"), papersPosition.position, Quaternion.identity);
+                            }
+                            else
+                            {
+                                Debug.Log("Carregou inimigo");
+                                if (enemy == null)
+                                {
+                                    //Instancia o enemy que vai aparecer
+                                    enemy = Instantiate(Resources.Load("Enemy", typeof(GameObject)), new Vector3(player.transform.position.x, player.transform.position.y, 0), 
+                                            Quaternion.identity)  as GameObject;
+                                }
+                            }
+                        }
+                    }
                 }
             }
 		}
@@ -64,5 +88,6 @@ public class Fase03Controller : BaseFaseController
     {
         yield return new WaitForSeconds(5);
         
+        Destroy(enemy);
     }
 }

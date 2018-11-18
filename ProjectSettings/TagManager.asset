@@ -8,9 +8,8 @@ TagManager:
   - nextStage
   - Enemy
   - Drop
-  - Porta01
-  - Porta02
-  - Teste
+  - Porta
+  - Barril
   layers:
   - Default
   - TransparentFX
