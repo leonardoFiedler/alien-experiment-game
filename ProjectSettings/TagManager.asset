@@ -10,6 +10,7 @@ TagManager:
   - Drop
   - Porta01
   - Porta02
+  - Teste
   layers:
   - Default
   - TransparentFX
