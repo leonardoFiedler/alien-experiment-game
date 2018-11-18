@@ -4,15 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Collect
+  - nextStage
   - Enemy
+  - Drop
   - Porta01
   - Porta02
-  - Porta03
-  - Porta04
-  - Porta05
-  - Collect
-  - Drop
-  - nextStage
   layers:
   - Default
   - TransparentFX

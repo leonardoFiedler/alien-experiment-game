@@ -38,11 +38,17 @@ public class Fase03Controller : BaseFaseController
 	{
 		if (Input.GetKey(KeyCode.E))
 		{
-			Collider2D[] collectObject = Physics2D.OverlapCircleAll(player.transform.position, 1.0f);
+			Collider2D[] collectObject = Physics2D.OverlapCircleAll(player.transform.position, 2.5f);
             if (collectObject.Length > 0)
             {
                 foreach(Collider2D collider2D in collectObject) 
                 {
+                    //if(collider2D.GetComponent<CollectableBehavior>() == null)
+                    //    Debug.Log("Aqui");
+                    //break;
+
+                    idCollectable = collider2D.GetComponent<CollectableBehavior>().Id;
+                    Debug.Log("Tag: " + collider2D.tag + " - ID: " + idCollectable);
                     Debug.Log("Tag: " + collider2D.tag);
                     if (listaPortas.Count == 0 && collider2D.tag == "Porta02")
                         Debug.Log("Entrou porta 02");
