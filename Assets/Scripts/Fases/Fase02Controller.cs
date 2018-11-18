@@ -17,7 +17,7 @@ public class Fase02Controller : BaseFaseController
         //Instancia o player que vai aparecer
         //Instantiate(Resources.Load("Player", typeof(GameObject)), new Vector3(playerSpawn.position.x, playerSpawn.position.y, 0), Quaternion.identity);
         
-        //TODO: Para execucao normal, obtem o player
+        //Para execucao normal, obtem o player
         player = GameObject.FindGameObjectsWithTag("Player")[0];
         player.transform.position = playerSpawn.position;
 
