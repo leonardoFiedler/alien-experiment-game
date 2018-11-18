@@ -1,48 +1,58 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class Fase03Controller : MonoBehaviour {
-
-    public Transform playerSpawn;
-    public Transform enemySpawn01;
-    public Transform enemySpawn02;
-    public Transform enemySpawn03;
-    public Transform enemySpawn04;
-    public Transform enemySpawn05;
+public class Fase03Controller : BaseFaseController 
+{
+    public Transform enemySpawn;
     public Transform mesa;
+    private int idCollectable;
     
-    private 
+    private string[] ordemPortas = new string[] { "Porta02", "Porta05", "Porta04", "Porta01", "Porta03" };
+    private List<string> listaPortas = new List<string>();
 
     // Use this for initialization
     void Start () {
 
         //Instancia o player que vai aparecer
-        Instantiate(Resources.Load("Player", typeof(GameObject)), new Vector3(playerSpawn.position.x, playerSpawn.position.y, 0), Quaternion.identity);
+        //Instantiate(Resources.Load("Player", typeof(GameObject)), new Vector3(playerSpawn.position.x, playerSpawn.position.y, 0), Quaternion.identity);
+
+        player = Instantiate(Resources.Load("Player", typeof(GameObject)), new Vector3(playerSpawn.position.x, playerSpawn.position.y, 0), 
+							Quaternion.identity) as GameObject;
         
         //Instancia o enemy que vai aparecer
-        Instantiate(Resources.Load("Enemy", typeof(GameObject)), new Vector3(enemySpawn01.position.x, enemySpawn01.position.y, 0), Quaternion.identity);
-        Instantiate(Resources.Load("Enemy", typeof(GameObject)), new Vector3(enemySpawn02.position.x, enemySpawn02.position.y, 0), Quaternion.identity);
-        Instantiate(Resources.Load("Enemy", typeof(GameObject)), new Vector3(enemySpawn03.position.x, enemySpawn03.position.y, 0), Quaternion.identity);
-        Instantiate(Resources.Load("Enemy", typeof(GameObject)), new Vector3(enemySpawn04.position.x, enemySpawn04.position.y, 0), Quaternion.identity);
-        Instantiate(Resources.Load("Enemy", typeof(GameObject)), new Vector3(enemySpawn05.position.x, enemySpawn05.position.y, 0), Quaternion.identity);
+        //Instantiate(Resources.Load("Enemy", typeof(GameObject)), new Vector3(enemySpawn.position.x, enemySpawn.position.y, 0), Quaternion.identity);
 
         //Limpa a visualizacao
         StartCoroutine(ExecuteAfterTime());
     }
 	
 	// Update is called once per frame
-	void Update () {
-        GetInput();
-    }
+	public override void Update () {
+        base.Update();
+	}
 
-    private void GetInput()
-    {
-        if (Input.GetKey(KeyCode.E))
-        {
-           // Direction += Vector2.up;
-        }
-    }
+	public override void GetInput()
+	{
+		if (Input.GetKey(KeyCode.E))
+		{
+			Collider2D[] collectObject = Physics2D.OverlapCircleAll(player.transform.position, 1.0f);
+            if (collectObject.Length > 0)
+            {
+                foreach(Collider2D collider2D in collectObject) 
+                {
+                    Debug.Log("Tag: " + collider2D.tag);
+                    if (listaPortas.Count == 0 && collider2D.tag == "Porta02")
+                        Debug.Log("Entrou porta 02");
+                    
+                    break;
+                }
+            }
+		}
+        base.GetInput();
+	}
 
     IEnumerator ExecuteAfterTime()
     {
