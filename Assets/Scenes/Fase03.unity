@@ -2209,7 +2209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  nextSceneName: 
+  nextSceneName: Fase04
   playerSpawn: {fileID: 1044575396}
   papersPosition: {fileID: 1339398899}
   enemySpawn: {fileID: 789014346}

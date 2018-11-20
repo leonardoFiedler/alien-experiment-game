@@ -15,18 +15,14 @@ public class Fase04Controller : BaseFaseController
     void Start () 
     {
         //Instancia o player que vai aparecer
-        player = Instantiate(Resources.Load("Player", typeof(GameObject)), new Vector3(playerSpawn.position.x, playerSpawn.position.y, 0), 
+         player = Instantiate(Resources.Load("Player", typeof(GameObject)), new Vector3(playerSpawn.position.x, playerSpawn.position.y, 0), 
 							Quaternion.identity) as GameObject;
 
         //Para execucao normal, obtem o player
         //player = GameObject.FindGameObjectsWithTag("Player")[0];
         //player.transform.position = playerSpawn.position;
         
-		SetOpenBourbon();
-		SetCloseBourbon();
-
-		//Limpa a visualizacao
-        StartCoroutine(ExecuteAfterTime());
+		//SetOpenBourbon();
     }
         
     public override void Update () 
@@ -93,26 +89,17 @@ public class Fase04Controller : BaseFaseController
         base.GetInput();
 	}
 
-	public void SetOpenBourbon()
+	/*public void SetOpenBourbon(int[] bourbonsInt, int index)
 	{
-		foreach (int i in ordemBourbons)
-		{
-			bourbons[i].GetComponent<Animator>().SetBool("open", true);
-			StartCoroutine(ExecuteAfterTime());
-		}
+		int pos = bourbonsInt[index];
+		bourbons[pos].GetComponent<Animator>().SetBool("open", true);
+		StartCoroutine(ExecuteAfterTime(bourbons[pos], index));
+		
 	}
 
-	public void SetCloseBourbon()
+	IEnumerator ExecuteAfterTime(GameObject bourbon, int index)
 	{
-		foreach (var bourbon in bourbons)
-		{
-			bourbon.GetComponent<Animator>().SetBool("open", false);
-			StartCoroutine(ExecuteAfterTime());
-		}
-	}
-
-	IEnumerator ExecuteAfterTime()
-	{
-		yield return new WaitForSeconds(10);
-	}
+		yield return new WaitForSeconds(5);
+		bourbon.GetComponent<Animator>().SetBool("open", false);
+	}*/
 }
