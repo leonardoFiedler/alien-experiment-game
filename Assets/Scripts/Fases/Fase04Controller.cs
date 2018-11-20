@@ -12,17 +12,19 @@ public class Fase04Controller : BaseFaseController
     private int idCollectable; //Id do objeto coletado;
 	public Transform enemySpawn;
 
+	private bool canOpen;
+
     void Start () 
     {
         //Instancia o player que vai aparecer
-         player = Instantiate(Resources.Load("Player", typeof(GameObject)), new Vector3(playerSpawn.position.x, playerSpawn.position.y, 0), 
-							Quaternion.identity) as GameObject;
+        //player = Instantiate(Resources.Load("Player", typeof(GameObject)), new Vector3(playerSpawn.position.x, playerSpawn.position.y, 0), Quaternion.identity) as GameObject;
+		
+		canOpen = false;
 
         //Para execucao normal, obtem o player
-        //player = GameObject.FindGameObjectsWithTag("Player")[0];
-        //player.transform.position = playerSpawn.position;
-        
-		//SetOpenBourbon();
+        player = GameObject.FindGameObjectsWithTag("Player")[0];
+        player.transform.position = playerSpawn.position;
+		SetOpenBourbon(0);
     }
         
     public override void Update () 
@@ -42,9 +44,20 @@ public class Fase04Controller : BaseFaseController
             {
                 foreach (Collider2D collider2D in collectObject) 
 				{
-					if (collider2D.tag == "Barril")
+					if (collider2D.tag == "Barril" && canOpen)
 					{
 						idCollectable = collider2D.GetComponent<CollectableBehavior>().Id;
+
+						if (listaBourbons.Contains(idCollectable)) 
+							break;
+
+
+						foreach (var b in bourbons)
+						{
+							if (b.GetComponent<CollectableBehavior>().Id == idCollectable) {
+								b.GetComponent<Animator>().SetBool("open", true);
+							}
+						}
 
 						Debug.Log("Ordem: " + ordemBourbons.Length + " - Lista: "+ listaBourbons.Count);
 
@@ -68,11 +81,16 @@ public class Fase04Controller : BaseFaseController
 								Instantiate(Resources.Load("Papers"), papersPosition.position, Quaternion.identity);
 							else
 							{
-								for (int i = 0; i < 3; i++)
+								listaBourbons = new List<int>();
+								foreach (var b in bourbons) 
 								{
-									Instantiate(Resources.Load("Enemy", typeof(GameObject)), new Vector3(enemySpawn.position.x, enemySpawn.position.y, 0), 
-                                        Quaternion.identity);
+									b.GetComponent<Animator>().SetBool("open", false);
 								}
+
+								GameObject gameObject = Instantiate(Resources.Load("Enemy", typeof(GameObject)), 
+								new Vector3(enemySpawn.position.x, enemySpawn.position.y, 0), Quaternion.identity) as GameObject;
+								gameObject.transform.Find("Range").GetComponent<CircleCollider2D>().radius = 12.0f;
+
 							}
 						}
 						else
@@ -89,17 +107,21 @@ public class Fase04Controller : BaseFaseController
         base.GetInput();
 	}
 
-	/*public void SetOpenBourbon(int[] bourbonsInt, int index)
+	public void SetOpenBourbon(int index)
 	{
-		int pos = bourbonsInt[index];
+		int pos = ordemBourbons[index];
 		bourbons[pos].GetComponent<Animator>().SetBool("open", true);
-		StartCoroutine(ExecuteAfterTime(bourbons[pos], index));
-		
+		StartCoroutine(CloseBourbon(bourbons[pos], index));
 	}
 
-	IEnumerator ExecuteAfterTime(GameObject bourbon, int index)
+	IEnumerator CloseBourbon(GameObject bourbon, int index)
 	{
-		yield return new WaitForSeconds(5);
+		yield return new WaitForSeconds(2);
 		bourbon.GetComponent<Animator>().SetBool("open", false);
-	}*/
+		index++;
+		if (index < ordemBourbons.Length)
+			SetOpenBourbon(index);
+		else
+			canOpen = true;
+	}
 }

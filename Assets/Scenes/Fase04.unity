@@ -222,39 +222,6 @@ Prefab:
       propertyPath: m_Name
       value: Bourbon_2
       objectReference: {fileID: 0}
-    - target: {fileID: 1386812882074084, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
-      propertyPath: m_TagString
-      value: Barril
-      objectReference: {fileID: 0}
-    - target: {fileID: 1227095428403982, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
-      propertyPath: m_TagString
-      value: Barril
-      objectReference: {fileID: 0}
-    - target: {fileID: 1647147727026622, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
-      propertyPath: m_TagString
-      value: Barril
-      objectReference: {fileID: 0}
-    - target: {fileID: 1367835693738528, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
-      propertyPath: m_TagString
-      value: Barril
-      objectReference: {fileID: 0}
-    - target: {fileID: 1286331134443470, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
-      propertyPath: m_TagString
-      value: Barril
-      objectReference: {fileID: 0}
-    - target: {fileID: 1344994721351284, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
-      propertyPath: m_TagString
-      value: Barril
-      objectReference: {fileID: 0}
-    - target: {fileID: 1141177035154602, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
-      propertyPath: m_TagString
-      value: Barril
-      objectReference: {fileID: 0}
-    - target: {fileID: 114105964552406060, guid: 452b46d9c81e3ae4ea0d139a2159d5cd,
-        type: 2}
-      propertyPath: id
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
   m_IsPrefabAsset: 0
