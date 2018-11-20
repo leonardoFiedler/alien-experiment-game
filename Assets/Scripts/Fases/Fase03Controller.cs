@@ -5,18 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class Fase03Controller : BaseFaseController 
 {
+    public GameObject enemy;
     public Transform enemySpawn;
-    public Transform mesa;
     private int idCollectable;
     
     private int[] ordemPortas = new int[] { 2, 5, 4, 1, 3 };
     private List<int> listaPortas = new List<int>();
 
     // Use this for initialization
-    void Start () {
-
+    void Start () 
+    {
         //Instancia o player que vai aparecer
-        /* player = Instantiate(Resources.Load("Player", typeof(GameObject)), new Vector3(playerSpawn.position.x,  playerSpawn.position.y, 0), Quaternion.identity) as GameObject;*/
+        //player = Instantiate(Resources.Load("Player", typeof(GameObject)), new Vector3(playerSpawn.position.x,  playerSpawn.position.y, 0), Quaternion.identity) as GameObject;
 
         //Para execucao normal, obtem o player
         player = GameObject.FindGameObjectsWithTag("Player")[0];
@@ -64,9 +64,14 @@ public class Fase03Controller : BaseFaseController
                             }
                             else
                             {
-                                Debug.Log("Carregou inimigo");
-                                Instantiate(Resources.Load("Enemy", typeof(GameObject)), new Vector3(player.transform.position.x, player.transform.position.y, 0), 
-                                            Quaternion.identity);
+                                if (enemy == null)
+                                {
+                                    Debug.Log("Carregou inimigo");
+                                    enemy = Instantiate(Resources.Load("Enemy", typeof(GameObject)), new Vector3(player.transform.position.x, 
+                                                        player.transform.position.y, 0), Quaternion.identity) as GameObject;
+                                    GameObject goRange = enemy.transform.Find("Range").gameObject;
+                                    goRange.GetComponent<CircleCollider2D>().radius = 12.0f;
+                                }
                             }
 
                             if (ordemPortas.Length == listaPortas.Count)
