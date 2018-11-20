@@ -135,7 +135,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 93147299}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.67, y: 3.27, z: -0.078125}
+  m_LocalPosition: {x: -0.02, y: -0.08, z: -0.078125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -146,6 +146,34 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1386812882074084, guid: 452b46d9c81e3ae4ea0d139a2159d5cd,
     type: 2}
   m_PrefabInternal: {fileID: 1903235525}
+--- !u!1 &236809048
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 236809049}
+  m_Layer: 0
+  m_Name: EnemySpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &236809049
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 236809048}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.92, y: 2.84, z: -0.4609375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &360445514 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1386812882074084, guid: 452b46d9c81e3ae4ea0d139a2159d5cd,
@@ -164,7 +192,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4637000856654384, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.3125849
+      value: 1.51
       objectReference: {fileID: 0}
     - target: {fileID: 4637000856654384, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
       propertyPath: m_LocalPosition.z
@@ -194,6 +222,39 @@ Prefab:
       propertyPath: m_Name
       value: Bourbon_2
       objectReference: {fileID: 0}
+    - target: {fileID: 1386812882074084, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227095428403982, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647147727026622, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1367835693738528, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286331134443470, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344994721351284, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141177035154602, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 114105964552406060, guid: 452b46d9c81e3ae4ea0d139a2159d5cd,
+        type: 2}
+      propertyPath: id
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
   m_IsPrefabAsset: 0
@@ -219,7 +280,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 840422386}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.7, z: 0}
+  m_LocalPosition: {x: 0.01, y: -1.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -248,7 +309,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4637000856654384, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.5186846
+      value: -3.5
       objectReference: {fileID: 0}
     - target: {fileID: 4637000856654384, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
       propertyPath: m_LocalPosition.z
@@ -278,6 +339,39 @@ Prefab:
       propertyPath: m_Name
       value: Bourbon_3
       objectReference: {fileID: 0}
+    - target: {fileID: 1386812882074084, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227095428403982, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647147727026622, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1367835693738528, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286331134443470, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344994721351284, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141177035154602, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 114105964552406060, guid: 452b46d9c81e3ae4ea0d139a2159d5cd,
+        type: 2}
+      propertyPath: id
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
   m_IsPrefabAsset: 0
@@ -294,7 +388,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4637000856654384, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.43
+      value: -3.5
       objectReference: {fileID: 0}
     - target: {fileID: 4637000856654384, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
       propertyPath: m_LocalPosition.z
@@ -320,6 +414,39 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1386812882074084, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227095428403982, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647147727026622, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1367835693738528, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286331134443470, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344994721351284, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141177035154602, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 114105964552406060, guid: 452b46d9c81e3ae4ea0d139a2159d5cd,
+        type: 2}
+      propertyPath: id
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
   m_IsPrefabAsset: 0
@@ -341,7 +468,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4637000856654384, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.4343815
+      value: 1.52
       objectReference: {fileID: 0}
     - target: {fileID: 4637000856654384, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
       propertyPath: m_LocalPosition.z
@@ -370,6 +497,39 @@ Prefab:
     - target: {fileID: 1386812882074084, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
       propertyPath: m_Name
       value: Bourbon_5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227095428403982, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647147727026622, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1367835693738528, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286331134443470, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344994721351284, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141177035154602, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386812882074084, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 114105964552406060, guid: 452b46d9c81e3ae4ea0d139a2159d5cd,
+        type: 2}
+      propertyPath: id
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
@@ -1158,7 +1318,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4637000856654384, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.3125849
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4637000856654384, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1187,6 +1347,39 @@ Prefab:
     - target: {fileID: 1386812882074084, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
       propertyPath: m_Name
       value: Bourbon_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386812882074084, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227095428403982, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647147727026622, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1367835693738528, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286331134443470, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344994721351284, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141177035154602, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 114105964552406060, guid: 452b46d9c81e3ae4ea0d139a2159d5cd,
+        type: 2}
+      propertyPath: id
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
@@ -1256,6 +1449,7 @@ MonoBehaviour:
   - {fileID: 998995211}
   - {fileID: 976698290}
   - {fileID: 228373087}
+  enemySpawn: {fileID: 236809049}
 --- !u!1001 &1903235525
 Prefab:
   m_ObjectHideFlags: 0
@@ -1269,7 +1463,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4637000856654384, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.356289
+      value: -3.48
       objectReference: {fileID: 0}
     - target: {fileID: 4637000856654384, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1298,6 +1492,39 @@ Prefab:
     - target: {fileID: 1386812882074084, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
       propertyPath: m_Name
       value: Bourbon_6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141177035154602, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344994721351284, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286331134443470, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1367835693738528, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647147727026622, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227095428403982, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386812882074084, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}
+      propertyPath: m_TagString
+      value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 114105964552406060, guid: 452b46d9c81e3ae4ea0d139a2159d5cd,
+        type: 2}
+      propertyPath: id
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 452b46d9c81e3ae4ea0d139a2159d5cd, type: 2}

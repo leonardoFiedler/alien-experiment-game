@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,7 +7,6 @@ public class Fase03Controller : BaseFaseController
 {
     public Transform enemySpawn;
     public Transform mesa;
-    public GameObject enemy;
     private int idCollectable;
     
     private int[] ordemPortas = new int[] { 2, 5, 4, 1, 3 };
@@ -20,6 +18,10 @@ public class Fase03Controller : BaseFaseController
         //Instancia o player que vai aparecer
         player = Instantiate(Resources.Load("Player", typeof(GameObject)), new Vector3(playerSpawn.position.x, playerSpawn.position.y, 0), 
 							Quaternion.identity) as GameObject;
+
+        //Para execucao normal, obtem o player
+        //player = GameObject.FindGameObjectsWithTag("Player")[0];
+        //player.transform.position = playerSpawn.position;
         
         //Limpa a visualizacao
         StartCoroutine(ExecuteAfterTime());
@@ -61,20 +63,17 @@ public class Fase03Controller : BaseFaseController
                                  listaPortas.Add(idCollectable);
                                 Debug.Log("Entrou porta " + idCollectable);
                             }
-                            else if (ordemPortas.Length == listaPortas.Count)
-                            {
-                                //Instancia o papel e vai para a proxima fase
-                                Instantiate(Resources.Load("Papers"), papersPosition.position, Quaternion.identity);
-                            }
                             else
                             {
                                 Debug.Log("Carregou inimigo");
-                                if (enemy == null)
-                                {
-                                    //Instancia o enemy que vai aparecer
-                                    enemy = Instantiate(Resources.Load("Enemy", typeof(GameObject)), new Vector3(player.transform.position.x, player.transform.position.y, 0), 
-                                            Quaternion.identity)  as GameObject;
-                                }
+                                Instantiate(Resources.Load("Enemy", typeof(GameObject)), new Vector3(player.transform.position.x, player.transform.position.y, 0), 
+                                            Quaternion.identity);
+                            }
+
+                            if (ordemPortas.Length == listaPortas.Count)
+                            {
+                                //Instancia o papel e vai para a proxima fase
+                               Instantiate(Resources.Load("Papers"), papersPosition.position, Quaternion.identity);
                             }
                         }
                     }
@@ -87,7 +86,5 @@ public class Fase03Controller : BaseFaseController
     IEnumerator ExecuteAfterTime()
     {
         yield return new WaitForSeconds(5);
-        
-        Destroy(enemy);
     }
 }
