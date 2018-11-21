@@ -16,11 +16,11 @@ public class Fase03Controller : BaseFaseController
     void Start () 
     {
         //Instancia o player que vai aparecer
-        //player = Instantiate(Resources.Load("Player", typeof(GameObject)), new Vector3(playerSpawn.position.x,  playerSpawn.position.y, 0), Quaternion.identity) as GameObject;
+        player = Instantiate(Resources.Load("Player", typeof(GameObject)), new Vector3(playerSpawn.position.x,  playerSpawn.position.y, 0), Quaternion.identity) as GameObject;
 
         //Para execucao normal, obtem o player
-        player = GameObject.FindGameObjectsWithTag("Player")[0];
-        player.transform.position = playerSpawn.position;
+        //player = GameObject.FindGameObjectsWithTag("Player")[0];
+        //player.transform.position = playerSpawn.position;
         
         //Limpa a visualizacao
         StartCoroutine(ExecuteAfterTime());
@@ -42,42 +42,38 @@ public class Fase03Controller : BaseFaseController
             {
                 foreach(Collider2D collider2D in collectObject) 
                 {
-                    Debug.Log("Tag: " + collider2D.tag);
                     if (collider2D.tag == "Porta")
                     {
                         idCollectable = collider2D.GetComponent<CollectableBehavior>().Id;
-                        Debug.Log("Tag: " + collider2D.tag + " - ID: " + idCollectable);
                         
                         if (idCollectable > 0)
                         {
+                            Debug.Log("Porta " + idCollectable);
+
                             count = listaPortas.Count;
-                            Debug.Log("2 - ID: " + idCollectable + " - Count: " + count);
                             if (count == 0 && idCollectable == 2)
                             {
                                 listaPortas.Add(idCollectable);
-                                Debug.Log("Entrou porta 02");
                             }
                             else if (ordemPortas[count] == idCollectable)
                             {
-                                 listaPortas.Add(idCollectable);
-                                Debug.Log("Entrou porta " + idCollectable);
+                                listaPortas.Add(idCollectable);
                             }
                             else
                             {
-                                if (enemy == null)
-                                {
-                                    Debug.Log("Carregou inimigo");
-                                    enemy = Instantiate(Resources.Load("Enemy", typeof(GameObject)), new Vector3(player.transform.position.x, 
-                                                        player.transform.position.y, 0), Quaternion.identity) as GameObject;
+                                enemy = Instantiate(Resources.Load("Enemy", typeof(GameObject)), new Vector3(enemySpawn.position.x, 
+                                                        enemySpawn.position.y, 0), Quaternion.identity) as GameObject;
                                     GameObject goRange = enemy.transform.Find("Range").gameObject;
                                     goRange.GetComponent<CircleCollider2D>().radius = 12.0f;
-                                }
+                                
+                                 listaPortas.Clear();
+                                 Debug.Log("Errou");
                             }
 
                             if (ordemPortas.Length == listaPortas.Count)
                             {
-                                //Instancia o papel e vai para a proxima fase
-                               Instantiate(Resources.Load("Papers"), papersPosition.position, Quaternion.identity);
+                                Instantiate(Resources.Load("Papers"), papersPosition.position, Quaternion.identity);
+                                listaPortas.Clear();
                             }
                         }
                     }
@@ -90,5 +86,7 @@ public class Fase03Controller : BaseFaseController
     IEnumerator ExecuteAfterTime()
     {
         yield return new WaitForSeconds(5);
+
+        Destroy(enemy);
     }
 }
