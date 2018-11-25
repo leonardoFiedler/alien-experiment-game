@@ -2607,7 +2607,7 @@ GameObject:
   - component: {fileID: 1021606978}
   m_Layer: 0
   m_Name: Itens
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4471,7 +4471,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2134482153}
   - component: {fileID: 2134482152}
-  - component: {fileID: 2134482154}
   - component: {fileID: 2134482155}
   m_Layer: 0
   m_Name: Grid
@@ -4506,17 +4505,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2134482154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2134482151}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a8ee163cf2b7144c9e0e117c6d8cd97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2134482155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4531,10 +4519,9 @@ MonoBehaviour:
   player: {fileID: 0}
   nextSceneName: Fase03
   playerSpawn: {fileID: 950608878}
-  playerSpawn: {fileID: 950608878}
+  papersPosition: {fileID: 296734174}
   enemySpawn01: {fileID: 1444153525}
   enemySpawn02: {fileID: 312208151}
   enemySpawn03: {fileID: 956375120}
   enemySpawn04: {fileID: 357084825}
   enemySpawn05: {fileID: 803037900}
-  papersPosition: {fileID: 296734174}

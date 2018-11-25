@@ -11,6 +11,7 @@ TagManager:
   - Porta
   - Barril
   - Teste
+  - Wall
   layers:
   - Default
   - TransparentFX

@@ -15,8 +15,12 @@ public class Fase03Controller : BaseFaseController
     // Use this for initialization
     void Start () 
     {
-        //Instancia o player que vai aparecer
-        player = Instantiate(Resources.Load("Player", typeof(GameObject)), new Vector3(playerSpawn.position.x,  playerSpawn.position.y, 0), Quaternion.identity) as GameObject;
+        if (GameObject.FindGameObjectsWithTag("Player").Length > 0) {
+			player = GameObject.FindGameObjectsWithTag("Player")[0];
+        	player.transform.position = playerSpawn.position;
+		} else {
+			player = Instantiate(Resources.Load("Player", typeof(GameObject)), new Vector3(playerSpawn.position.x, playerSpawn.position.y, 0), Quaternion.identity) as GameObject;
+		}
 
         //Para execucao normal, obtem o player
         //player = GameObject.FindGameObjectsWithTag("Player")[0];

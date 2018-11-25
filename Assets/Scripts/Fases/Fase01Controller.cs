@@ -17,9 +17,13 @@ public class Fase01Controller : BaseFaseController
 		marcacoesGO = new GameObject[6];
 		marcacoesPlayer = marcacoes;
 
-		//Instancia o player que vai aparecer
-		player = Instantiate(Resources.Load("Player", typeof(GameObject)), new Vector3(playerSpawn.position.x, playerSpawn.position.y, 0), 
-							Quaternion.identity) as GameObject;
+		if (GameObject.FindGameObjectsWithTag("Player").Length > 0) {
+			player = GameObject.FindGameObjectsWithTag("Player")[0];
+        	player.transform.position = playerSpawn.position;
+		} else {
+			player = Instantiate(Resources.Load("Player", typeof(GameObject)), new Vector3(playerSpawn.position.x, playerSpawn.position.y, 0), Quaternion.identity) as GameObject;
+		}
+
         //Apos carregar o player mantem ele vivo entre as fases
         DontDestroyOnLoad(player);
 

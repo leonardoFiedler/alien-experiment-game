@@ -13,13 +13,12 @@ public class Fase02Controller : BaseFaseController
 
     void Start ()
     {
-        //Para testes somente da fase: Instancia o player
-        //Instancia o player que vai aparecer
-        //Instantiate(Resources.Load("Player", typeof(GameObject)), new Vector3(playerSpawn.position.x, playerSpawn.position.y, 0), Quaternion.identity);
-        
-        //Para execucao normal, obtem o player
-        player = GameObject.FindGameObjectsWithTag("Player")[0];
-        player.transform.position = playerSpawn.position;
+        if (GameObject.FindGameObjectsWithTag("Player").Length > 0) {
+			player = GameObject.FindGameObjectsWithTag("Player")[0];
+        	player.transform.position = playerSpawn.position;
+		} else {
+			player = Instantiate(Resources.Load("Player", typeof(GameObject)), new Vector3(playerSpawn.position.x, playerSpawn.position.y, 0), Quaternion.identity) as GameObject;
+		}
 
         //Instancia a posicao para ir para a proxima fase
         Instantiate(Resources.Load("Papers"), papersPosition.position, Quaternion.identity);
