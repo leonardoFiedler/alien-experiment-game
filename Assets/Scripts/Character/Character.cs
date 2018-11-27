@@ -128,9 +128,11 @@ public abstract class Character : MonoBehaviour {
 			    ActivateLayer("AttackLayer");
 		    } else {
 			    ActivateLayer("IdleLayer"); //Reseta o layer de andar, logo mantem-se parado
+                StopAttack();
 		    }
         } else {
             ActivateLayer("DeathLayer"); //Seta o layer para o estado death
+            StopAttack();
         }
 	}
 
@@ -207,9 +209,10 @@ public abstract class Character : MonoBehaviour {
 	{
 		if (attackRoutine != null) {
 			StopCoroutine(attackRoutine);
-			isAttacking = false;
-			Animator.SetBool("attack", isAttacking);
 		}
+        isAttacking = false;
+        Animator.SetBool("attack", isAttacking);
+        attackRoutine = null;
 	}
 
 	public virtual void TakeDamage(int value) 
@@ -218,6 +221,7 @@ public abstract class Character : MonoBehaviour {
 		if (health.MyCurrentValue <= 0) {
             Animator.SetTrigger("die");
             health.DisableCanvas(); //Hide lifebar
+            rigidBody.velocity = Vector2.zero;
         }
 	}
 }

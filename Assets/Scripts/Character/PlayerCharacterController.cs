@@ -5,10 +5,47 @@ using UnityEngine.SceneManagement;
 
 public class PlayerCharacterController : Character {
 
+	private Collider2D[] hitObjects;
+
 	protected override void Update () 
 	{
 		GetInput();
 		base.Update();
+	}
+
+	protected  override void FixedUpdate()
+	{
+		base.FixedUpdate();
+		VerificaEnemyAtingido();
+	}
+
+	private void VerificaEnemyAtingido() 
+	{
+		if (hitObjects != null && hitObjects.Length > 0)
+		{
+			bool isHitPlayer = false;
+			Collider2D collider = null;
+			foreach(Collider2D collider2D in hitObjects) {
+				if (collider2D.tag == "Enemy")
+				{
+					isHitPlayer = true;
+					collider = collider2D;
+				}
+
+				if (collider2D.tag == "Wall") {
+					isHitPlayer = false;
+					collider = null;
+					break;
+				}
+			}
+
+			if (isHitPlayer) {
+				collider.SendMessage("TakeDamage", MeleeDamage, SendMessageOptions.DontRequireReceiver);
+				Debug.Log("Hit " + collider.name);
+			}
+
+			hitObjects = null;
+		}
 	}
 
 	private void GetInput() 
@@ -27,7 +64,8 @@ public class PlayerCharacterController : Character {
 			Direction += Vector2.left;
 		}
 		if (Input.GetKeyDown(KeyCode.Space)) {
-			attackRoutine = StartCoroutine(Attack());
+			if (attackRoutine == null)
+				attackRoutine = StartCoroutine(Attack());
 		}
 	}
 
@@ -37,36 +75,12 @@ public class PlayerCharacterController : Character {
 		{
 			isAttacking = true;
 			Animator.SetBool("attack", isAttacking);
-
+			hitObjects = Physics2D.OverlapCircleAll(meleeAttackPosition.position, MeleeRange);
+			
 			yield return new WaitForSeconds(1);
-
-			Collider2D[] hitObjects = Physics2D.OverlapCircleAll(meleeAttackPosition.position, MeleeRange);
-            if (hitObjects.Length > 0)
-            {
-				bool isHitPlayer = false;
-				Collider2D collider = null;
-                foreach(Collider2D collider2D in hitObjects) {
-                    if (collider2D.tag == "Enemy")
-                    {
-						isHitPlayer = true;
-						collider = collider2D;
-                    
-                    }
-
-					if (collider2D.tag == "Wall") {
-						isHitPlayer = false;
-						collider = null;
-						break;
-					}
-                }
-
-				if (isHitPlayer) {
-					collider.SendMessage("TakeDamage", MeleeDamage, SendMessageOptions.DontRequireReceiver);
-					Debug.Log("Hit " + collider.name);
-				}
-            }
-
 			StopAttack();
+		} else {
+			yield break;
 		}
 	}
 }
